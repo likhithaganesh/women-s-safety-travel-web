@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="helpline.css">
+</head>
+<body>
+    <header>
+        <h1>contact us</h1>
+    </header>
+    <section>
+        <button onclick="callHelpline()">Call Helpline</button>
+        
+        <div id="verificationSection">
+            <h2>Are you safe?</h2>
+            <form id="verifyForm">
+                <label for="verifyPin">Enter your 5-digit PIN:</label>
+                <input type="password" id="verifyPin" name="verifyPin" pattern="[0-9]{5}" required>
+                <button type="submit">Verify</button>
+            </form>
+        </div>
+        
+        <div id="feedbackSection">
+            <h2>Feedback</h2>
+            <button onclick="sendFeedback(true)">👍</button>
+            <button onclick="sendFeedback(false)">👎</button>
+        </div>
+    </section>
+    <script src="scripts.js"></script>
+    <script>
+        function callHelpline(){
+            window.location.herf='gps.html';
+        }
+    </script>
+    <section>
+        <a href ="tel:+919019826066">callHelpline</a>
+        <a href="gps.html">track</a>
+        <a href="verification.html">verify</a>
+    </section>
+</body>
+</html>

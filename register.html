@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <link rel="stylesheet" type="text/css" href="register.css">
+</head>
+<body>
+    
+    <form id="registrationForm" aria-labelledby="form-title" onsubmit="return validateForm()">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email"><br><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br><br>
+
+        <input type="submit" value="Register">
+        <p class="error" id="errorMessage"></p>
+    </form>
+
+    <script>
+        function validateForm() {
+            // Get form elements
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+
+            // Clear previous error messages
+            errorMessage.textContent = '';
+
+            // Check if any field is empty
+            if (!username || !email || !password) {
+                errorMessage.textContent = 'All fields are required.';
+                return false;
+            }
+
+            // Simulate form submission
+            alert('Registration successful!');
+            window.location.href = 'login.html'; // Redirect to login page
+            return false; // Prevent form submission
+        }
+
+        // Function to retain form data on page reload
+        window.onload = function() {
+            if (sessionStorage.getItem('username')) {
+                document.getElementById('username').value = sessionStorage.getItem('username');
+            }
+            if (sessionStorage.getItem('email')) {
+                document.getElementById('email').value = sessionStorage.getItem('email');
+            }
+            if (sessionStorage.getItem('password')) {
+                document.getElementById('password').value = sessionStorage.getItem('password');
+            }
+        };
+
+        // Save form data to sessionStorage on input change
+        document.getElementById('username').addEventListener('input', function() {
+            sessionStorage.setItem('username', this.value);
+        });
+        document.getElementById('email').addEventListener('input', function() {
+            sessionStorage.setItem('email', this.value);
+        });
+        document.getElementById('password').addEventListener('input', function() {
+            sessionStorage.setItem('password', this.value);
+        });
+    </script>
+    
+</body>
+</html>

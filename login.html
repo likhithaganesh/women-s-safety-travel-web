@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <header>
+        <h1>Login</h1>
+    </header>
+    <main>
+        <form id="loginForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <br>
+            <label for="gmail">Gmail:</label>
+            <input type="email" id="gmail" name="gmail" required>
+            <br>
+            <label for="pin">5-digit PIN Code:</label>
+            <input type="password" id="pin" name="pin" pattern="[0-9]{5}" required>
+            <br>
+            <button onclick ="myFunction()" type="submit">Login</button>
+          
+        </form>
+    </main>
+        <script>
+            document.getElementById('loginForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+    
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+    
+                const response = await fetch('/api/users/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+    
+                if (response.ok) {
+                    // Redirect to helpline page upon successful login
+                    function myFunction(){
+                        location.replace("./public/helpline.html")
+                    }
+                } else {
+                    const data = await response.json();
+                    alert(data.msg || 'Login failed. Please try again.');
+                }
+            });
+        </script>
+        <section>
+            <a href="helpline.html">click here for help</a>
+            <a href="thanku.html">thank you</a>
+        </section>
+    
+     
+</body>
+</html>
